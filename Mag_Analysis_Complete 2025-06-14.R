@@ -61,7 +61,7 @@ mor <- function(v) exp(sqrt(2)*v*qnorm(0.75))
 
 
 df_baseline <- 
-  read_csv("Deidentified Data/Mag_Baseline_2025-06-14.csv") %>%
+  read_csv("***") %>%
    # dichotomize preferred languages
   mutate(Value = ifelse(
     Characteristic %in% "Preferred Language",
@@ -70,11 +70,11 @@ df_baseline <-
   # remove hospital names
   mutate(Value = ifelse(
     Characteristic %in% "Hospital",
-    case_when(Value == "Scarborough Health Network - G" ~ "A",
-              Value == "Scarborough Health Network - B" ~ "B",
-              Value == "Scarborough Health Network - C" ~ "C",
-              Value == "Lakeridge Health - Oshawa" ~ "D",
-              Value == "Lakeridge Health - Ajax/Picker" ~ "E"),
+    case_when(Value == "*** - G" ~ "A",
+              Value == "*** - B" ~ "B",
+              Value == "*** - C" ~ "C",
+              Value == "***" ~ "D",
+              Value == "***" ~ "E"),
     Value
   )) %>% # categorize principal problem diagnoses
   left_join(
@@ -96,7 +96,7 @@ df_baseline <- filter(df_baseline,
 ###### Load outcomes data ############
 
 df_outcome <- 
-  read_csv("Deidentified Data/Mag_Outcomes_2025-06-14.csv") %>%
+  read_csv("***") %>%
   filter(!(Patient %in% teens$Patient))
 
 patients_with_rhythms <- filter(df_outcome, Characteristic == "Rhythm")$Patient
